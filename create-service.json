@@ -1,0 +1,29 @@
+{
+    "taskDefinition": "ecs-demo:<revision-number>",
+    "cluster": "whiz2",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "<ARN of target group 1 i.e. ECS-TG-1>",
+            "containerName": "sample-website",
+            "containerPort": 80
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "<Subnet ID availability zone us-east-1a>",
+                "<Subnet ID availability zone us-east-1b>"
+            ],
+            "securityGroups": [
+                "<Security group ID of ECS-SG"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    }
+}
